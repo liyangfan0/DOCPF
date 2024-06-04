@@ -18,7 +18,9 @@ Baidu netdisk：https://pan.baidu.com/s/1TqChsRTACfV7wklJaMC5kQ password: os6t
 ## Running
 The datesets path is set as './SatSOT'
 
-Run test.m and you can get the tracking results which are saved in ./results/SatSOT
+Run test.m to acquire the tracking results of DOPCF
+
+The tracking results which are saved in ./results/SatSOT
 
 ## Raw Results
 We provide the raw tracking results of DOCPF and CPKF(TGRS'22)
