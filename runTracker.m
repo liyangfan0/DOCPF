@@ -7,8 +7,19 @@ function results=runTracker(sequence, start_frame)
 	sequence_path = [sequence,'/'];
     img_path = [sequence_path 'img/'];
     %% Read files
-    
-    params.bb_VOT = csvread([sequence_path 'groundtruth_rect.txt']);
+    % 打开文件
+    fileID = fopen([sequence_path 'groundtruth.txt'], 'r');
+
+    % 检查文件是否成功打开
+    if fileID == -1
+        error('Failed to open file.');
+    end
+    % 读取文件的第一行
+    firstLine = fgetl(fileID);
+    % 关闭文件
+    fclose(fileID);
+    matrix = str2num(firstLine); 
+    params.bb_VOT=matrix;
     region = params.bb_VOT(1,:);
     %%%%%%%%%%%%%%%%%%%%%%%%%
     % read all the frames in the 'imgs' subfolder
