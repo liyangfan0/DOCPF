@@ -3,6 +3,7 @@ results_file='./results';
 
 if ~exist(results_file, 'dir')
     mkdir(results_file);
+end
 contents = dir(datasets_path);
 seq = {};
 
