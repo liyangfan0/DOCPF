@@ -1,29 +1,18 @@
-function runTracker(sequence, start_frame)
+function results=runTracker(sequence, start_frame)
 % RUN_TRACKER  is the external function of the tracker - does initialization and calls trackerMain
 
     %% Read params.txt
     params = readParams('params.txt');
 	%% load video info
 	sequence_path = [sequence,'/'];
-    img_path = [sequence_path 'imgs/'];
+    img_path = [sequence_path 'img/'];
     %% Read files
-    text_files = dir([sequence_path '*_frames.txt']);
-
-    f = fopen([sequence_path text_files(1).name]);
-    frames = textscan(f, '%f,%f');
-    if exist('start_frame')
-        frames{1} = start_frame;
-    else
-        frames{1} = 1;
-    end
     
-    fclose(f);
-    
-    params.bb_VOT = csvread([sequence_path 'groundtruth.txt']);
-    region = params.bb_VOT(frames{1},:);
+    params.bb_VOT = csvread([sequence_path 'groundtruth_rect.txt']);
+    region = params.bb_VOT(1,:);
     %%%%%%%%%%%%%%%%%%%%%%%%%
     % read all the frames in the 'imgs' subfolder
-    dir_content = dir([sequence_path 'imgs/']);
+    dir_content = dir([sequence_path 'img/']);
     % skip '.' and '..' from the count
     n_imgs = length(dir_content) - 2;
     img_files = cell(n_imgs, 1);
@@ -65,6 +54,6 @@ function runTracker(sequence, start_frame)
     % in runTracker we do not output anything
 	params.fout = -1;
 	% start the actual tracking
-	trackerMain(params, im, bg_area, fg_area, area_resize_factor);
+	results=trackerMain(params, im, bg_area, fg_area, area_resize_factor);
     fclose('all');
 end

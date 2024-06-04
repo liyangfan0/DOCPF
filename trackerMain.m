@@ -279,20 +279,20 @@ function [results] = trackerMain(p, im, bg_area, fg_area, area_resize_factor)
         OTB_rect_positions(frame,:) = rect_position;
 
         if p.fout > 0,  fprintf(p.fout,'%.2f,%.2f,%.2f,%.2f\n', rect_position(1),rect_position(2),rect_position(3),rect_position(4));   end
-
+ 
         %% VISUALIZATION
         if p.visualization == 1
             if isToolboxAvailable('Computer Vision System Toolbox')
                 im = insertShape(im, 'Rectangle', rect_position, 'LineWidth', 4, 'Color', 'black');
                 im = insertShape(im, 'Rectangle', rect_position_padded, 'LineWidth', 4, 'Color', 'yellow');
                 % Display the annotated video frame using the video player object.
-                %step(p.videoPlayer, im);
+                step(p.videoPlayer, im);
             else
                 figure(1)
                 imshow(im)
                 rectangle('Position',rect_position, 'LineWidth',2, 'EdgeColor','g');
                 rectangle('Position',rect_position_padded, 'LineWidth',2, 'LineStyle','--', 'EdgeColor','b');
-                %drawnow
+                drawnow
             end
         end
         

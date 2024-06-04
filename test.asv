@@ -1,0 +1,29 @@
+datasets_path='./SatSOT';
+results_file='./results';
+
+% 使用 dir 函数获取文件夹下所有内容
+contents = dir(datasets_path);
+
+% 初始化一个空的 cell 数组来存储子文件夹的名字
+seq = {};
+
+% 循环遍历 contents 中的每一项
+for i = 1:length(contents)
+    % 排除 '.' 和 '..' 文件夹
+    if contents(i).isdir && ~strcmp(contents(i).name, '.') && ~strcmp(contents(i).name, '..')
+        % 将子文件夹的名字添加到 cell 数组中
+        seq{end+1} = [datasets_path '/' contents(i).name); 
+    end
+end
+
+
+for s=1:length(seq)
+   results=runTracker(seq{s},1);
+   data = results.res;
+   if ~exist(results_file, 'dir')
+    mkdir(results_file);
+   end
+   filePath=fullfile(results_file,[seq{s},'.txt']);
+   dlmwrite(filePath, data, 'delimiter', ',');
+   disp(['data saved to ', filePath]);
+end
