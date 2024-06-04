@@ -14,6 +14,8 @@ Downloads：
 
 Baidu netdisk：https://pan.baidu.com/s/1TqChsRTACfV7wklJaMC5kQ password: os6t
 
+# Environment
+Our code environment is based on Matlab2016. You can refer to https://github.com/bertinetto/staple to set your environment.  
 
 ## Running
 The datesets path is set as './SatSOT'
