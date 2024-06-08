@@ -18,7 +18,7 @@ Baidu netdisk：https://pan.baidu.com/s/1TqChsRTACfV7wklJaMC5kQ password: os6t
 Our code environment is based on Matlab2016. You can refer to https://github.com/bertinetto/staple to set your environment.  
 
 ## Running
-The datesets path is set as './SatSOT'
+The datesets path is set as './SatSOT'. You can put the SatSOT datasets into the dir.
 
 Run test.m to acquire the tracking results of DOPCF
 
